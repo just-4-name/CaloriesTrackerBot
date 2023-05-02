@@ -5,7 +5,6 @@ from dataclasses import dataclass
 @dataclass
 class TgBot:
     token: str
-    # admin_id: int
 
 
 @dataclass
@@ -28,8 +27,7 @@ def load_config(path: str):
 
     return Config(
         tg_bot=TgBot(
-            token=tg_bot["token"],
-            # admin_id=int(tg_bot["admin_id"])
+            token=tg_bot["token"]
         ),
         parser=Parser(
             api_key=parser["api_key"],

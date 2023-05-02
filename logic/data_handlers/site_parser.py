@@ -22,4 +22,4 @@ class FoodSearcher:
     async def check_if_in_db(self, food_name):
         api_url = f'{self.__url}?query={food_name}'
         response = requests.get(api_url, headers={'X-Api-Key': self.__config.parser.api_key})
-        return response.status_code == requests.codes.ok
+        return response.status_code == requests.codes.ok and response.text != '[]'
