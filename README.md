@@ -14,4 +14,4 @@ How to run project:
 - open bot in telegram (link for my bot is t.me/DailyCaloriesTracker_bot)
 - enter /start command
 
-with /help command you can get list of all bot commands, and it is also given in message after /start command.
+with /help command you can get list of all bot commands with brief description, and it is also given in message after /start command.
