@@ -15,7 +15,7 @@ ENTER_POS_INT_MESSAGE = 'Oops, please, enter positive integer number'
 NEW_DAY_MESSAGE = 'Great! Started new day, continue sticking to your nutrition plan!'
 ASK_ENTER_GOALS_MESSAGE = "Oops, set your nutrition goals first with /set_goals command"
 NO_SUCH_MEAL_MESSAGE = "Oops, unfortunately, I don't know such meal. Please, check for typos or enter macros " \
-                       "from the Internet"
+                       "from the Internet with /add_custom command"
 
 
 async def hello_message(name):
