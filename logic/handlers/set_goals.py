@@ -2,8 +2,9 @@ from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
-from logic.data_handlers.database_manager import DataBaseManager
+from logic.data_handlers.database_manager import edit_user_goals
 from logic.data_handlers.valid_checker import is_positive_int
+from resources.messages import ENTER_POS_INT_MESSAGE
 
 
 class SetGoal(StatesGroup):
@@ -20,7 +21,7 @@ async def enter_calories_goal(message: types.Message, state: FSMContext):
 
 async def calories_goal_chosen(message: types.Message, state: FSMContext):
     if not await is_positive_int(message.text):
-        await message.answer('Oops, please, enter positive integer number')
+        await message.answer(ENTER_POS_INT_MESSAGE)
         return
     await state.update_data(calories=int(message.text))
     await state.set_state(SetGoal.waiting_for_proteins_num.state)
@@ -29,7 +30,7 @@ async def calories_goal_chosen(message: types.Message, state: FSMContext):
 
 async def proteins_goal_chosen(message: types.Message, state: FSMContext):
     if not await is_positive_int(message.text):
-        await message.answer('Oops, please, enter positive integer number')
+        await message.answer(ENTER_POS_INT_MESSAGE)
         return
     await state.update_data(proteins=int(message.text))
     await state.set_state(SetGoal.waiting_for_carbs_num.state)
@@ -38,20 +39,20 @@ async def proteins_goal_chosen(message: types.Message, state: FSMContext):
 
 async def carbs_goal_chosen(message: types.Message, state: FSMContext):
     if not await is_positive_int(message.text):
-        await message.answer('Oops, please, enter positive integer number')
+        await message.answer(ENTER_POS_INT_MESSAGE)
         return
     await state.update_data(carbs=int(message.text))
     await state.set_state(SetGoal.waiting_for_fats_num.state)
     await message.answer('Great! Next step - enter your grams of fats goal:')
 
 
-async def fats_goal_chosen(message: types.Message, state: FSMContext, db_manager: DataBaseManager):
+async def fats_goal_chosen(message: types.Message, state: FSMContext):
     if not await is_positive_int(message.text):
-        await message.answer('Oops, please, enter positive integer number')
+        await message.answer(ENTER_POS_INT_MESSAGE)
         return
     await state.update_data(fats=int(message.text))
     user_data = await state.get_data()
-    await db_manager.edit_user_goals(message.from_user.id, user_data)
+    await edit_user_goals(message.from_user.id, user_data)
     await state.finish()
     await message.answer('Great! You have set all nutrition goals')
 
