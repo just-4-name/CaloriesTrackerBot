@@ -9,9 +9,9 @@ Data is stored via sqlite3 using this library: https://github.com/omnilib/aiosql
 How to run project:
 - Clone repository
 - pip install -r requirements.txt
-- set token variable in config/bot.ini file (currently it is set as my token, because repository is private)
+- set token variable in config/bot.ini file 
 - python3 bot.py
-- open bot in telegram (link for my bot is t.me/DailyCaloriesTracker_bot)
+- open bot in telegram 
 - enter /start command
 
 with /help command you can get list of all bot commands with brief description, and it is also given in message after /start command.
